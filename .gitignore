@@ -11,3 +11,8 @@ wheels/
 
 # Helm chart archives
 *.tgz
+
+# AI
+.supercode/
+.cursor
+memory-bank/
