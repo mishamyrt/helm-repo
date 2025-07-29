@@ -1,0 +1,10 @@
+url: "https://helm.myrt.co"
+build: "index"
+target: "charts"
+sources:
+  - url: "https://github.com/8gears/n8n-helm-chart"
+    kind: "git"
+    version: "main"
+    charts:
+      - name: "n8n"
+        path: "charts/n8n"
