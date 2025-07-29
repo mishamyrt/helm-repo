@@ -1,0 +1,42 @@
+name: Release Charts
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Helm
+        uses: azure/setup-helm@v4.3.0
+        with:
+          version: "latest"
+
+      - name: Update Helm index
+        run: make index
+
+      - name: Upload index artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./index
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: Production
+      url: https://helm.myrt.co
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
