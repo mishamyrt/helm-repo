@@ -1,0 +1,9 @@
+[project]
+name = "helm-repo"
+version = "0.1.0"
+description = "Helm repository management"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pyyaml>=6.0.2",
+]
